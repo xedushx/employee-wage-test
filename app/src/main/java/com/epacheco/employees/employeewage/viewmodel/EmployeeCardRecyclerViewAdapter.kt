@@ -7,14 +7,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.epacheco.employees.employeewage.R
 import com.epacheco.employees.employeewage.application.EmployeeApplication
-import com.epacheco.employees.employeewage.model.EmployeeList
-import com.bumptech.glide.request.target.Target
+import com.epacheco.employees.employeewage.model.EmployeeView
 
 /**
  * Created by epacheco on 23,enero,2021
  * Siatigroup, Copyright
  */
-class EmployeeCardRecyclerViewAdapter(private val employeeList: List<EmployeeList>) : RecyclerView.Adapter<EmployeeCardViewHolder>() {
+class EmployeeCardRecyclerViewAdapter(private val employeeList: List<EmployeeView>) : RecyclerView.Adapter<EmployeeCardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeCardViewHolder {
         val layoutView = LayoutInflater.from(parent.context).inflate(R.layout.employee_cardview, parent, false)
@@ -24,10 +23,11 @@ class EmployeeCardRecyclerViewAdapter(private val employeeList: List<EmployeeLis
     override fun onBindViewHolder(holder: EmployeeCardViewHolder, position: Int) {
         if (position < employeeList.size) {
             val employee = employeeList[position]
-            holder.employeeName.text = employee.name.substring(0,1) + ". "  + employee.lastName
-            holder.employeeCompany.text = "Company: " + employee.company
-            holder.employeeSavingPerWeek.text = "Saving per week: " + employee.savingPerWeek
-            holder.employeeGoal.text = "Goal: $. " + employee.goal
+            holder.employeeName.text = employee.displayName
+            holder.employeeCompany.text = "Company: ${employee.job.toString()}"
+            holder.employeeSavingPerWeek.text = employee.savingPerWeek
+            holder.employeeGoal.text = employee.goal
+            holder.employeeMonths.text = "Months required: ${employee.months}"
 
             Glide
                 .with(EmployeeApplication.instance)

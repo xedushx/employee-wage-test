@@ -19,18 +19,33 @@ data class EmployeeList (
     val name: String,
     val lastName: String,
     val picture: String,
-    val weekDayHours: Long,
-    val weekEndHours: Long,
+    val weekDayHours: Int,
+    val weekEndHours: Int,
     val savingPerWeek: String,
-    val goal: Long,
+    val goal: Double,
     val company: String
 )
 
 data class Job (
     val name: String,
-    val weekDayHourlyWage: Long,
-    val weekEndDayHourlyWage: Long,
-    val maxHoursPerWeek: Long,
-    val minHoursPerWeek: Long
+    val weekDayHourlyWage: Double,
+    val weekEndDayHourlyWage: Double,
+    val maxHoursPerWeek: Int,
+    val minHoursPerWeek: Int
+)
+
+data class EmployeeJobView (
+    var name: String = "",
+    var value: Double = 0.0
+)
+
+data class EmployeeView (
+    var id: String = "",
+    var displayName: String = "",
+    var picture: String = "",
+    var savingPerWeek: String = "",
+    var goal: String = "",
+    var months: Int = 0,
+    var job: List<EmployeeJobView> = emptyList()
 )
 
